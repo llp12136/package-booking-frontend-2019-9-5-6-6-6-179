@@ -29,8 +29,6 @@
           '取件时间',
           {rules: [{ required: true, message: 'Please select your gender!' }]}
         ]"
-      
-        @change="handleSelectChange"
       />
        
     </a-form-item>
@@ -72,13 +70,8 @@ export default {
           console.log('Received values of form: ', values);
         }
       });
-    },
-    handleSelectChange (value) {
-      console.log(value);
-      this.form.setFieldsValue({
-        note: `Hi, ${value === 'male' ? 'man' : 'lady'}!`,
-      });
-    },
+    }
+  
   },
 };
 </script>

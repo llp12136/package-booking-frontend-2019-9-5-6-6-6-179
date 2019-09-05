@@ -8,16 +8,28 @@ export default new Vuex.Store({
 
   },
   mutations: {
+    initTodos: function (state, todos) {
+      state.todoList = todos
+    },
 
   },
   actions: {
-    createTodos(context,content){
-      const url = "http://5b4dcb2aec112500143a2311.mockapi.io/api/todos";
-      axios.post(url,content).then(function(reponse){
-      context.dispatch('fetchTodos');
-      }).catch(function(error){
-      alert(error)
-      })
+    fetchTodos(context) {
+      const url = "http://localhost:8082/packge";
+      axios.get(url).then(function (response) {
+        context.commit('initTodos', response.data);
+        // console.log(30)
+        console.log(response)
       }
+      )
+    },
+    createTodos(context, content) {
+      const url = "http://localhost:8082/packge";
+      axios.post(url, content).then(function (reponse) {
+        context.dispatch('fetchTodos');
+      }).catch(function (error) {
+        alert(error)
+      })
+    }
   }
 })
